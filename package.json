@@ -1,0 +1,33 @@
+{
+  "name": "gc-memory-trace-app",
+  "version": "1.0.0",
+  "description": "TBD",
+  "main": "app.js",
+  "scripts": {
+    "test": "test app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickkooper/meetup-app-performance.git"
+  },
+  "keywords": [
+    "app",
+    "performance"
+  ],
+  "author": "Nikolay Matvienko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickkooper/meetup-app-performance/issues"
+  },
+  "homepage": "https://github.com/nickkooper/meetup-app-performance#readme",
+  "dependencies": {
+    "0x": "^2.4.4",
+    "body-parser": "^1.18.2",
+    "express": "^4.15.4",
+    "lodash": "^4.17.4",
+    "lodash.merge": "^4.6.0"
+  },
+  "devDependencies": {
+    "pretty-trace": "^0.3.1"
+  }
+}
