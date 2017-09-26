@@ -28,6 +28,7 @@
     "lodash.merge": "^4.6.0"
   },
   "devDependencies": {
+    "node-report": "^2.2.1",
     "pretty-trace": "^0.3.1"
   }
 }

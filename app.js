@@ -1,12 +1,15 @@
 'use strict';
 
 const http = require('http');
-const fs = require('fs');
 const url = require('url');
 const CrashController = require('./src/controllers/CrashController');
+const ReportController = require('./src/controllers/ReportController');
 const ApiService = require('./src/services/ApiService');
+const nodeReport = require('node-report');
+nodeReport.setDirectory('./reports');
 
 const crashController = new CrashController(new ApiService());
+const reportController = new ReportController();
 
 function bodyParserMiddleware (req, res, next) {
     let body = '';
@@ -37,6 +40,9 @@ let server = http.createServer(function (req, res) {
     } if (req.method == 'POST') {
         let handler = defaulRequestHandler.bind(crashController, req, res)
         bodyParserMiddleware(req, res, handler);
+    } if ('GET /report' === `${req.method} ${requestUrl.pathname}`) {
+        let handler = reportController.index.bind(reportController, req, res)
+        bodyParserMiddleware(req, res, handler);
     } else {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end('Processed');
@@ -49,4 +55,9 @@ console.log(`This process pid is ${process.pid}`);
 process.on('unhandledRejection', (reason, p) => {
     console.log('Unhandled Rejection at:', p, 'reason:', reason);
     process.abort();
-  });
+});
+
+process.on('uncaughtException', (err) => {
+    //nodeReport.triggerReport(err);
+    process.abort();
+});
