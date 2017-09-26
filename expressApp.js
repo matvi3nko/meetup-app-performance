@@ -4,10 +4,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const factoryRouter = require('./routes/factoryRouter');
 const CrashController = require('./src/controllers/CrashController');
+const ApiService = require('./src/services/ApiService');
 
 //routing
-let policy = {id: 777};
-let router = factoryRouter(new CrashController(policy));
+let router = factoryRouter(new CrashController(new ApiService()));
 
 //app initialization
 const app = express();
@@ -29,3 +29,9 @@ app.use(function (err, req, res, next) {
 app.listen(3000);
 
 console.log(`This process is pid ${process.pid}`);
+
+process.on('unhandledRejection', (reason, p) => {
+    // application specific logging, throwing an error, or other logic here
+    console.log('Unhandled Rejection at:', p, 'reason:', reason);
+    process.abort();
+  });
