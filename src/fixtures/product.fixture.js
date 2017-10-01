@@ -7,7 +7,7 @@ let product = {
     'availableColorIds': [
         '001'
     ],
-    'brandName': 'AEO',
+    'brandName': 'Super',
     'bundleProducts': [],
     'careInstructions': 'Machine Wash',
     'catId': 'cat4470002',

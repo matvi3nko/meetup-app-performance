@@ -4,12 +4,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const factoryRouter = require('./routes/factoryRouter');
 const CrashController = require('./src/controllers/CrashController');
+const ReportController = require('./src/controllers/ReportController');
 const ApiService = require('./src/services/ApiService');
 const nodeReport = require('node-report');
 nodeReport.setDirectory('./reports');
 
 //routing
-let router = factoryRouter(new CrashController(new ApiService()));
+let router = factoryRouter(new CrashController(new ApiService()), new ReportController());
 
 //app initialization
 const app = express();
